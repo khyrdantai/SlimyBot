@@ -31,7 +31,6 @@ class SlimyBot(discord.Client):
             add_date = str(message.content).replace('!add ', '')
             user_id = str(message.author.id)
             if add_date.isnumeric:
-                self.loader.birthdays_append.write(add_date + '.' + user_id)
                 self.loader.add_birthday(add_date, user_id)
                 await message.reply('I did my best~')
             else:

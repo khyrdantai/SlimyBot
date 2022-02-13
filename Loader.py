@@ -23,7 +23,7 @@ class Loader:
         self.generate_list()
 
     def load_texts(self):
-        self.birthdays_append = open("birthdays.txt", "a")
+        self.birthdays_append = open("birthdays.txt", "a+")
         self.birthdays_read = open("birthdays.txt", "r")
         self.birthdays_write = open("birthdays.txt", "w+")
         self.channel_text = open("channel.txt", "r")
@@ -34,12 +34,18 @@ class Loader:
         self.token = self.token_text.readline()
 
     def generate_list(self):
-        # reset the list to avoid memory leaks
-        self.list_of_people = None
         self.list_of_people = []
         for lines in self.birthdays_read:
             info = lines.split(".")
             self.list_of_people.append(Person(info[0], info[1]))
 
     def add_birthday(self, birth_date, user_id):
+        # add to object list of people
         self.list_of_people.append(Person(birth_date, user_id))
+        # close and open file to save new input
+        self.birthdays_append.write(birth_date + '.' + user_id)
+        self.birthdays_append.close()
+        self.birthdays_append = open("birthdays.txt", "a")
+
+#   def remove_birthday(self):
+#   yet to implement
