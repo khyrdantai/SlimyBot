@@ -10,12 +10,13 @@ class SlimyBot(discord.Client):
     loader = None
 
     def __init__(self, loader):
+        # import the Loader object created by Main
         self.loader = loader
 
         # connect to discord
         super().__init__()
 
-        # start the task to run in the background
+        # start the background date check task
         self.daily_check.start()
 
     # this is how the bot can respond to stuff
