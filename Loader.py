@@ -40,3 +40,6 @@ class Loader:
         for lines in self.birthdays_read:
             info = lines.split(".")
             self.list_of_people.append(Person(info[0], info[1]))
+
+    def add_birthday(self, birth_date, user_id):
+        self.list_of_people.append(Person(birth_date, user_id))

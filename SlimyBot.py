@@ -28,10 +28,14 @@ class SlimyBot(discord.Client):
             await message.reply('Hello!')
         # to add a birthday to the list
         if message.content.startswith('!add'):
-            add_date = message.content
-            user_id = message.author
-            if add_date.isnumeric and len(add_date) is 4:
-                self.loader.birthdays_append.write(add_date + "." + user_id)
+            add_date = str(message.content).replace('!add ', '')
+            user_id = str(message.author.id)
+            if add_date.isnumeric:
+                self.loader.birthdays_append.write(add_date + '.' + user_id)
+                self.loader.add_birthday(add_date, user_id)
+                await message.reply('I did my best~')
+            else:
+                await message.reply('Try again in this format: DDMM')
 
     # main loop to check for birthday
     @tasks.loop(hours=1)
@@ -40,7 +44,7 @@ class SlimyBot(discord.Client):
         await self.wait_until_ready()
 
         if datetime.now().strftime("%H") != "10":
-            print("Not the time.")
+            print('Not the time.')
             return
 
         now = datetime.today()
