@@ -14,4 +14,7 @@ How to use:
    - Formatting on each line: DDMM.USER_DISCORD_ID
 
 Run "Main.py" in terminal through whatever means you have to run Python. 
+
 Type "!hello" to test if the bot is running. If it replies, it is working. 
+
+To add birthdays, the user must add their birthday by typing "!add DDMM". 
