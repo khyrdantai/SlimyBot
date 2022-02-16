@@ -31,6 +31,7 @@ class Loader:
         self.list_of_people = []
         for lines in birthdays_text:
             info = lines.split(".")
+            info[1].replace("\n", "")
             self.list_of_people.append(Person(info[0], info[1]))
 
         birthdays_text.close()
