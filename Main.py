@@ -7,4 +7,4 @@ loader = Loader()
 
 # start the bot with the files and run it
 client = SlimyBot(loader)
-client.run(loader.token)
+client.run(loader.bot_token)

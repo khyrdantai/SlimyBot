@@ -32,7 +32,7 @@ class SlimyBot(discord.Client):
             add_date = str(message.content).replace('!add ', '')
             user_id = str(message.author.id)
             if add_date.isnumeric:
-                self.loader.add_birthday(add_date, user_id)
+                self.loader.add_user(add_date, user_id)
                 await message.reply('I did my best~')
             else:
                 await message.reply('Try again in this format: DDMM')
@@ -50,9 +50,9 @@ class SlimyBot(discord.Client):
         now = datetime.today()
         today = now.strftime("%d%m")
 
-        for person in self.loader.list_of_people:
+        for person in self.loader.list_of_users:
             if today in person.birth_date:
-                channel = await self.fetch_channel(self.loader.channel_id)
+                channel = await self.fetch_channel(self.loader.server_id)
                 name = await self.fetch_user(person.discord_id)
                 if name is not None:
                     await channel.send("Happy birthday <@!" + person.discord_id + "> !!!")
